@@ -42,7 +42,7 @@ public class TestFactory {
                     JSONObject jsonAnswer = jsonAnswers.getJSONObject(j);
                     int answerId = jsonAnswer.getInt("id");
                     String answerContent = jsonAnswer.getString("content");
-                    answers.add(DataFactory.createAnswer(answerContent));
+                    answers.add(DataFactory.createAnswer(answerId, answerContent));
                 }
 
                 Content content = DataFactory.createContent(questionContent);

@@ -1,8 +1,6 @@
-package la.hack.kiron.gov.kironlanguageassessment;
+package la.hack.kiron.gov.kironlanguageassessment.data;
 
-import android.renderscript.ScriptGroup;
 import android.util.Log;
-import android.webkit.JsResult;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,13 +10,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
-import la.hack.kiron.gov.kironlanguageassessment.data.Answer;
-import la.hack.kiron.gov.kironlanguageassessment.data.Content;
-import la.hack.kiron.gov.kironlanguageassessment.data.DataFactory;
-import la.hack.kiron.gov.kironlanguageassessment.data.Level;
-import la.hack.kiron.gov.kironlanguageassessment.data.Question;
-import la.hack.kiron.gov.kironlanguageassessment.data.Test;
 
 /**
  * Created by Christian on 29.04.2016.
@@ -51,7 +42,7 @@ public class TestFactory {
                     JSONObject jsonAnswer = jsonAnswers.getJSONObject(j);
                     int answerId = jsonAnswer.getInt("id");
                     String answerContent = jsonAnswer.getString("content");
-                    answers.add(DataFactory.createAnswer(answerContent));
+                    answers.add(DataFactory.createAnswer(answerId, answerContent));
                 }
 
                 Content content = DataFactory.createContent(questionContent);

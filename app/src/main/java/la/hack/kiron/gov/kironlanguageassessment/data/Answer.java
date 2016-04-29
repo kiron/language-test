@@ -1,11 +1,17 @@
 package la.hack.kiron.gov.kironlanguageassessment.data;
 
 /**
- * Created by Christian on 29.04.2016.
+ * Answer representation
  */
 public interface Answer {
 
-    String getText();
+    /**
+     * Answer Id (unique among all answers)
+     */
+    int getId();
 
-    int getScore();
+    /**
+     * Answer that should be displayed (usually a text, may use HTML)
+     */
+    String getContent();
 }

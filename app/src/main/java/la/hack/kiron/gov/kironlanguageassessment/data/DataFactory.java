@@ -9,16 +9,16 @@ import java.util.List;
  */
 public class DataFactory {
 
-    public static Answer createAnswer(final String text) {
+    public static Answer createAnswer(final int id, final String text) {
         return new Answer() {
             @Override
-            public String getText() {
-                return text;
+            public int getId() {
+                return id;
             }
 
             @Override
-            public int getScore() {
-                return 0;
+            public String getContent() {
+                return text;
             }
         };
     }
@@ -26,8 +26,13 @@ public class DataFactory {
     public static Content createContent(final String text) {
         return new Content() {
             @Override
-            public String getText() {
+            public String getContent() {
                 return text;
+            }
+
+            @Override
+            public boolean hasPicture() {
+                return false;
             }
 
             @Override

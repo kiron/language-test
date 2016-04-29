@@ -33,13 +33,14 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
+                intent.putExtra("test", TestFactory.createTest(Level.A1));
                 startActivity(intent);
             }
         });
 
-        Log.d(MainActivity.class.getSimpleName(), "Starte...");
-        Test test = TestFactory.createTest(Level.A1);
-        Log.d(MainActivity.class.getSimpleName(), "Test: " + test.getQuestions().size());
+//        Log.d(MainActivity.class.getSimpleName(), "Starte...");
+//        Test test = TestFactory.createTest(Level.A1);
+//        Log.d(MainActivity.class.getSimpleName(), "Test: " + test.getQuestions().size());
 
     }
 

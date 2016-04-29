@@ -17,72 +17,76 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title"
+            android:text="Question x of x"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:textSize="32dp"
-            android:id="@+id/textView2" />
+            android:id="@+id/title" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="description"
-            android:id="@+id/textView"
-            android:layout_below="@+id/textView2"
+            android:text="Question...?"
+            android:id="@+id/question"
+            android:layout_below="@+id/title"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
         <RadioGroup
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal">
 
             <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
                 android:text="Answer1"
-                android:id="@+id/radioButton"
+                android:id="@+id/radioButton1"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_row="0"
                 android:layout_column="0"
-                android:checked="true" />
+                android:checked="true"
+                android:height="40dp" />
 
             <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
                 android:text="Answer2"
                 android:id="@+id/radioButton2"
-                android:layout_alignTop="@+id/radioButton"
+                android:layout_alignTop="@+id/radioButton1"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_row="0"
                 android:layout_column="1"
-                android:checked="false" />
+                android:checked="false"
+                android:height="40dp" />
 
             <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
                 android:text="Answer3"
                 android:id="@+id/radioButton3"
                 android:layout_row="1"
                 android:layout_column="0"
-                android:checked="false" />
+                android:checked="false"
+                android:height="40dp" />
 
             <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
                 android:text="Answer4"
                 android:id="@+id/radioButton4"
                 android:layout_row="1"
                 android:layout_column="1"
-                android:checked="false" />
+                android:checked="false"
+                android:height="40dp" />
         </RadioGroup>
 
         <LinearLayout
@@ -95,6 +99,11 @@
                 android:layout_height="wrap_content"
                 android:text="Previous"
                 android:id="@+id/previousButton" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
             <Button
                 android:layout_width="wrap_content"

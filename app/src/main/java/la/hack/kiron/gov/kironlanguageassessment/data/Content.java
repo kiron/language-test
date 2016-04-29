@@ -2,10 +2,12 @@ package la.hack.kiron.gov.kironlanguageassessment.data;
 
 import android.media.Image;
 
+import java.io.Serializable;
+
 /**
  * Question content.
  */
-public interface Content {
+public interface Content extends Serializable {
 
     /**
      * Question that should be displayed (usually a text, may use HTML)

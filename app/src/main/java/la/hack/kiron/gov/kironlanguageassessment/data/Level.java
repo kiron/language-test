@@ -1,9 +1,11 @@
 package la.hack.kiron.gov.kironlanguageassessment.data;
 
+import java.io.Serializable;
+
 /**
  * Language skill levels.
  */
-public enum Level {
+public enum Level implements Serializable {
     A1,
     A2,
     B1,

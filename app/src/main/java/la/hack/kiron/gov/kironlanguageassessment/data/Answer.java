@@ -1,9 +1,11 @@
 package la.hack.kiron.gov.kironlanguageassessment.data;
 
+import java.io.Serializable;
+
 /**
  * Answer representation
  */
-public interface Answer {
+public interface Answer extends Serializable {
 
     /**
      * Answer Id (unique among all answers)

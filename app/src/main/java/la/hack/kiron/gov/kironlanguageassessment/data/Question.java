@@ -1,5 +1,7 @@
 package la.hack.kiron.gov.kironlanguageassessment.data;
 
+import com.google.common.base.Optional;
+
 import java.util.List;
 
 /**
@@ -26,5 +28,15 @@ public interface Question {
      * Answers that belong to this question
      */
     List<Answer> getAnswers();
+
+    /**
+     * Sets the answer selected by the user
+     */
+    void setSelectedAnswer(Answer answer);
+
+    /**
+     * The answer selected by the user (if he has selected one)
+     */
+    Optional<Answer> getSelectedAnswer();
 }
 

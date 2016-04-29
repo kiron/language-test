@@ -1,0 +1,114 @@
+[
+  {
+    "id": 11,
+    "content": "Hi! I ______ John. I study at Kiron.",
+    "answers": [
+      {
+        "id": 16,
+        "content": "are"
+      },
+      {
+        "id": 17,
+        "content": "am"
+      },
+      {
+        "id": 18,
+        "content": "is"
+      },
+      {
+        "id": 19,
+        "content": "name"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "content": "This is Florian. He is ______ best friend in Germany.",
+    "answers": [
+      {
+        "id": 20,
+        "content": "mine"
+      },
+      {
+        "id": 21,
+        "content": "my"
+      },
+      {
+        "id": 22,
+        "content": "mie"
+      },
+      {
+        "id": 23,
+        "content": "close"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "content": "This _____(1)  John. _____(2) studies at Kiron.",
+    "answers": [
+      {
+        "id": 24,
+        "content": "(1) is / (2) she"
+      },
+      {
+        "id": 25,
+        "content": "(1) are / (2) he"
+      },
+      {
+        "id": 26,
+        "content": "(1) is / (2) he"
+      },
+      {
+        "id": 27,
+        "content": "(1) are / (2) they"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "content": "A: Do you live in Germany?\r\n\r\nB: No, I ______ live in Germany.",
+    "answers": [
+      {
+        "id": 28,
+        "content": "not"
+      },
+      {
+        "id": 29,
+        "content": "can"
+      },
+      {
+        "id": 30,
+        "content": "am"
+      },
+      {
+        "id": 31,
+        "content": "don\u0027t"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "content": "A: Today is John’s party!\r\n\r\nB: Yes, great, I will see you there _____ 3 o’clock!",
+    "answers": [
+      {
+        "id": 32,
+        "content": "in"
+      },
+      {
+        "id": 33,
+        "content": "on"
+      },
+      {
+        "id": 34,
+        "content": "at"
+      },
+      {
+        "id": 35,
+        "content": "of"
+      }
+    ]
+  }
+]
+
+

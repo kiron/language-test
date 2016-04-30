@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -22,7 +23,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import gov.kiron.android.la.data.DataFactory;
 import gov.kiron.android.la.data.Question;
 import gov.kiron.android.la.data.Test;
 import gov.kiron.android.la.data.TestFactory;
@@ -44,6 +44,7 @@ public class QuestionActivity extends AppCompatActivity {
     private RadioButton radioButton4;
     private TextView titleTextView;
     private TextView questionTextView;
+    private ImageView questionImageView;
     private Button nextButton;
     private Button previousButton;
     private TextView timerTextView;
@@ -66,6 +67,8 @@ public class QuestionActivity extends AppCompatActivity {
 
         titleTextView = (TextView) findViewById(R.id.title);
         questionTextView = (TextView) findViewById(R.id.question);
+        questionImageView = (ImageView) findViewById(R.id.image_question);
+        questionImageView.setVisibility(View.VISIBLE);
 
         answerGroup = (RadioGroup) findViewById(R.id.answerGroup);
         radioButton1 = (RadioButton) findViewById(R.id.radioButton1);

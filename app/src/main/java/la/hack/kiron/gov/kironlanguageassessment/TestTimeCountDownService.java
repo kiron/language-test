@@ -6,14 +6,16 @@ import android.os.CountDownTimer;
 import android.os.IBinder;
 import android.util.Log;
 
-public class BroadcastService extends Service {
+public class TestTimeCountDownService extends Service {
 
-    private final static String TAG = "BroadcastService";
+    private final static String TAG = TestTimeCountDownService.class.getSimpleName();
 
-    public static final String COUNTDOWN_BR = "your_package_name.countdown_br";
-    Intent bi = new Intent(COUNTDOWN_BR);
+    private static final int TEST_TIME = 50; /* minutes */
 
-    CountDownTimer cdt = null;
+    public static final String COUNTDOWN_BR = "gov.kiron.android.la.testtimecounddown_br";
+    Intent intent = new Intent(COUNTDOWN_BR);
+
+    CountDownTimer countDownTimer;
 
     @Override
     public void onCreate() {
@@ -21,28 +23,32 @@ public class BroadcastService extends Service {
 
         Log.i(TAG, "Starting timer...");
 
-        cdt = new CountDownTimer(30000, 1000) {
+        countDownTimer = new CountDownTimer(TEST_TIME * 60 * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-
                 Log.i(TAG, "Countdown seconds remaining: " + millisUntilFinished / 1000);
-                bi.putExtra("countdown", millisUntilFinished);
-                sendBroadcast(bi);
+                sendTime(millisUntilFinished / 1000);
             }
 
             @Override
             public void onFinish() {
                 Log.i(TAG, "Timer finished");
+                sendTime(0);
             }
         };
 
-        cdt.start();
+        countDownTimer.start();
+    }
+
+    private void sendTime(long seconds) {
+        intent.putExtra("remainingTime", seconds);
+        sendBroadcast(intent);
     }
 
     @Override
     public void onDestroy() {
 
-        cdt.cancel();
+        countDownTimer.cancel();
         Log.i(TAG, "Timer cancelled");
         super.onDestroy();
     }

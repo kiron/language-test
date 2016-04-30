@@ -19,6 +19,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".QuestionActivity"></activity>
-        <service android:name=".BroadcastService" />
+        <service android:name=".TestTimeCountDownService" />
     </application>
 </manifest>

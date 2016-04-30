@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +15,6 @@ import la.hack.kiron.gov.kironlanguageassessment.data.Question;
 
 
 import la.hack.kiron.gov.kironlanguageassessment.data.Level;
-import la.hack.kiron.gov.kironlanguageassessment.data.Test;
 import la.hack.kiron.gov.kironlanguageassessment.data.TestFactory;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
                 intent.putExtra("test", TestFactory.createTest(Level.A1));
 
-                startService(new Intent(MainActivity.this, BroadcastService.class));
+                startService(new Intent(MainActivity.this, TestTimeCountDownService.class));
 
                 startActivity(intent);
             }

@@ -5,12 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -19,15 +17,12 @@ import com.google.common.base.Optional;
 
 import java.util.List;
 
-import la.hack.kiron.gov.kironlanguageassessment.data.Answer;
 import la.hack.kiron.gov.kironlanguageassessment.data.Question;
 import la.hack.kiron.gov.kironlanguageassessment.data.Test;
 
 public class QuestionActivity extends AppCompatActivity {
 
     private static final String TAG = QuestionActivity.class.getSimpleName();
-
-    private static final int TEST_TIME = 50; /* minutes */
 
     private int index;
     private Test test;
@@ -156,7 +151,7 @@ public class QuestionActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        registerReceiver(br, new IntentFilter(BroadcastService.COUNTDOWN_BR));
+        registerReceiver(br, new IntentFilter(TestTimeCountDownService.COUNTDOWN_BR));
         Log.i(TAG, "Registered broacast receiver");
     }
 
@@ -179,16 +174,16 @@ public class QuestionActivity extends AppCompatActivity {
 
     @Override
     public void onDestroy() {
-        //stopService(new Intent(this, BroadcastService.class));
+        //stopService(new Intent(this, TestTimeCountDownService.class));
         Log.i(TAG, "Stopped service");
         super.onDestroy();
     }
 
     private void updateGUI(Intent intent) {
         if (intent.getExtras() != null) {
-            long millisUntilFinished = intent.getLongExtra("countdown", 0);
+            long remainingTime = intent.getLongExtra("remainingTime", 0);
             //Log.i(TAG, "Countdown seconds remaining: " +  millisUntilFinished / 1000);
-            timerTextView.setText(millisUntilFinished / 1000 / 60 + ":" + millisUntilFinished / 1000 % 60);
+            timerTextView.setText(remainingTime / 60 + ":" + remainingTime % 60);
         }
     }
 }

@@ -16,7 +16,9 @@ import android.widget.TextView;
 
 import com.google.common.base.Optional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import gov.kiron.android.la.data.Question;
 import gov.kiron.android.la.data.Test;
@@ -41,6 +43,8 @@ public class QuestionActivity extends AppCompatActivity {
     private Button previousButton;
     private TextView timerTextView;
 
+    private Map<Character,Integer> answerRadioButtonMap;
+
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
@@ -61,6 +65,13 @@ public class QuestionActivity extends AppCompatActivity {
         radioButton2 = (RadioButton) findViewById(R.id.radioButton2);
         radioButton3 = (RadioButton) findViewById(R.id.radioButton3);
         radioButton4 = (RadioButton) findViewById(R.id.radioButton4);
+
+        answerRadioButtonMap = new HashMap<>();
+        answerRadioButtonMap.clear();
+        answerRadioButtonMap.put('A', radioButton1.getId());
+        answerRadioButtonMap.put('B', radioButton2.getId());
+        answerRadioButtonMap.put('C', radioButton3.getId());
+        answerRadioButtonMap.put('D', radioButton4.getId());
 
         nextButton = (Button) findViewById(R.id.next_button);
         previousButton = (Button) findViewById(R.id.previousButton);
@@ -110,29 +121,29 @@ public class QuestionActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 Question currentQuestion = test.getQuestions().get(index);
 
-                int indexOfCheckedAnswer = getCheckedItemById(checkedId);
+                char answerLetter = getCheckedItemByInt(checkedId);
 
-                if (indexOfCheckedAnswer >= 0 && indexOfCheckedAnswer <= 3) {
-                    currentQuestion.setSelectedAnswer(Optional.of(Integer.valueOf(checkedId)));
+                if (answerLetter == '-') {
+                    currentQuestion.setSelectedAnswer(Optional.<Character>absent());
                 } else {
-                    currentQuestion.setSelectedAnswer(Optional.<Integer>absent());
+                    currentQuestion.setSelectedAnswer(Optional.of(answerLetter));
                 }
 
             }
         });
     }
 
-    private int getCheckedItemById(int checkedId) {
-        if (checkedId == R.id.radioButton1) {
-            return 0;
-        } else if (checkedId == R.id.radioButton2) {
-            return 1;
-        } else if (checkedId == R.id.radioButton3) {
-            return 2;
-        } else if (checkedId == R.id.radioButton4) {
-            return 3;
+    private char getCheckedItemByInt(int checkedInt) {
+        if (checkedInt == R.id.radioButton1) {
+            return 'A';
+        } else if (checkedInt == R.id.radioButton2) {
+            return 'B';
+        } else if (checkedInt == R.id.radioButton3) {
+            return 'C';
+        } else if (checkedInt == R.id.radioButton4) {
+            return 'D';
         } else {
-            return -1;
+            return '-';
         }
     }
 
@@ -151,7 +162,7 @@ public class QuestionActivity extends AppCompatActivity {
         Question currentQuestion = test.getQuestions().get(index);
 
         if (currentQuestion.getSelectedAnswer().isPresent()) {
-            answerGroup.check(currentQuestion.getSelectedAnswer().get());
+            answerGroup.check(answerRadioButtonMap.get(currentQuestion.getSelectedAnswer().get()));
         } else {
             answerGroup.clearCheck();
         }

@@ -47,7 +47,7 @@ public class DataFactory {
     public static Question createQuestion(final int id, final Content content, final List<Answer> answers) {
         return new Question() {
 
-            Optional<Integer> selectedAnswer = Optional.absent();
+            Optional<Character> selectedAnswer = Optional.absent();
 
             @Override
             public int getId() {
@@ -69,12 +69,12 @@ public class DataFactory {
                 return answers;
             }
 
-            public void setSelectedAnswer(Optional<Integer> index) {
+            public void setSelectedAnswer(Optional<Character> index) {
                 this.selectedAnswer = index;
             }
 
             @Override
-            public Optional<Integer> getSelectedAnswer() {
+            public Optional<Character> getSelectedAnswer() {
                 return selectedAnswer;
             }
 

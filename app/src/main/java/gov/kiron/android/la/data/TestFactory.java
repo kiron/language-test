@@ -110,6 +110,29 @@ public class TestFactory {
         return null;
     }
 
+    public static void writeJSONToServer(Test test, String username) throws IOException {
+        StringBuffer sb = new StringBuffer();
+        boolean first = true;
+        for (Question q : test.getQuestions()) {
+            if (first) {
+                first = false;
+            } else {
+                sb.append(",");
+            }
+            sb.append(q.getId());
+            sb.append(":");
+            sb.append(q.getSelectedAnswer().or('-'));
+        }
+        URL url = new URL("http://athen052.server4you.de:8080/submit/" +
+                sb.toString() +
+                "?username=" + username);
+        Log.i("DEBUG", "write to JSON: " + sb.toString());
+        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+        String json = readStream(in);
+        urlConnection.disconnect();
+    }
+
     private static String getJSON() {
         return "[\n" +
                 "  {\n" +

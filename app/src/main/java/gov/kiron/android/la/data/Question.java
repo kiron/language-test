@@ -33,11 +33,11 @@ public interface Question extends Serializable {
     /**
      * Sets the answer selected by the user
      */
-    void setSelectedAnswer(Optional<Integer> index);
+    void setSelectedAnswer(Optional<Character> index);
 
     /**
      * The answer selected by the user (if he has selected one)
      */
-    Optional<Integer> getSelectedAnswer();
+    Optional<Character> getSelectedAnswer();
 }
 

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,8 @@ import gov.kiron.android.la.data.TestFactory;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +58,9 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
-                intent.putExtra("test", TestFactory.createTest(Level.A1));
+                intent.putExtra(QuestionActivity.SAVED_TEST, TestFactory.createTest(Level.A1));
+                Log.d(TAG, "Username: " + usernameEdit.getText().toString());
+                intent.putExtra(QuestionActivity.SAVED_USERNAME, usernameEdit.getText().toString());
                 startService(new Intent(MainActivity.this, TestTimeCountDownService.class));
 
                 startActivity(intent);

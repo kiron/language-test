@@ -80,7 +80,11 @@ public class TestFactory {
                 int questionId = jsonQuestion.getInt("id");
                 String questionContent = jsonQuestion.getString("content");
 
-                String pictureURL = jsonQuestion.getString("pictureUrl");
+                String pictureURL = jsonQuestion.getString("pictureURL");
+
+                if(pictureURL.equals("null")) {
+                    pictureURL = null;
+                }
 
 
                 JSONArray jsonAnswers = jsonQuestion.getJSONArray("answers");

@@ -170,6 +170,14 @@ public class QuestionActivity extends AppCompatActivity {
         radioButton3.setText(question.getAnswers().get(2).getContent());
         radioButton4.setText(question.getAnswers().get(3).getContent());
 
+        if(question.getContent().hasPicture()) {
+            questionImageView.setImageBitmap(question.getContent().getPicture());
+            questionImageView.setVisibility(View.VISIBLE);
+        } else {
+            questionImageView.setVisibility(View.INVISIBLE);
+        }
+
+
         // Set selected answer (if there is one)
         Question currentQuestion = test.getQuestions().get(index);
 

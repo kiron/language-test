@@ -1,5 +1,6 @@
 package gov.kiron.android.la.data;
 
+import android.graphics.Bitmap;
 import android.media.Image;
 
 import java.io.Serializable;
@@ -23,5 +24,5 @@ public interface Content extends Serializable {
      * Question picture
      * @return Image (if present)
      */
-    Image getPicture();
+    Bitmap getPicture();
 }

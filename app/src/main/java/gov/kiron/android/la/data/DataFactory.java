@@ -1,9 +1,13 @@
 package gov.kiron.android.la.data;
 
-import android.media.Image;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import com.google.common.base.Optional;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -25,7 +29,7 @@ public class DataFactory {
         };
     }
 
-    public static Content createContent(final String text) {
+    public static Content createContent(final String text, final Optional<String> pictureUrl) {
         return new Content() {
             @Override
             public String getContent() {
@@ -34,11 +38,21 @@ public class DataFactory {
 
             @Override
             public boolean hasPicture() {
-                return false;
+                return pictureUrl.isPresent();
             }
 
             @Override
-            public Image getPicture() {
+            public Bitmap getPicture() {
+
+                URL url = null;
+                try {
+                    url = new URL(pictureUrl.get());
+                    return BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 return null;
             }
         };

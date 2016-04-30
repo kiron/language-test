@@ -183,7 +183,10 @@ public class QuestionActivity extends AppCompatActivity {
         if (intent.getExtras() != null) {
             long remainingTime = intent.getLongExtra("remainingTime", 0);
             //Log.i(TAG, "Countdown seconds remaining: " +  millisUntilFinished / 1000);
-            timerTextView.setText(remainingTime / 60 + ":" + remainingTime % 60);
+            String min = String.format("%02d", remainingTime / 60);
+            String sec = String.format("%02d", remainingTime % 60);
+            timerTextView.setText(min + ":" + sec);
+
         }
     }
 }

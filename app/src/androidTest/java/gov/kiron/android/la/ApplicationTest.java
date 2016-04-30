@@ -1,4 +1,4 @@
-package la.hack.kiron.gov.kironlanguageassessment;
+package gov.kiron.android.la;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

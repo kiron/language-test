@@ -1,4 +1,4 @@
-package la.hack.kiron.gov.kironlanguageassessment;
+package gov.kiron.android.la;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,11 +11,9 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
-import la.hack.kiron.gov.kironlanguageassessment.data.Question;
-
-
-import la.hack.kiron.gov.kironlanguageassessment.data.Level;
-import la.hack.kiron.gov.kironlanguageassessment.data.TestFactory;
+import gov.kiron.android.la.data.Level;
+import gov.kiron.android.la.data.Question;
+import gov.kiron.android.la.data.TestFactory;
 
 public class MainActivity extends AppCompatActivity {
 

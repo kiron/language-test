@@ -1,4 +1,4 @@
-package la.hack.kiron.gov.kironlanguageassessment;
+package gov.kiron.android.la;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -17,8 +17,8 @@ import com.google.common.base.Optional;
 
 import java.util.List;
 
-import la.hack.kiron.gov.kironlanguageassessment.data.Question;
-import la.hack.kiron.gov.kironlanguageassessment.data.Test;
+import gov.kiron.android.la.data.Question;
+import gov.kiron.android.la.data.Test;
 
 public class QuestionActivity extends AppCompatActivity {
 

@@ -32,16 +32,39 @@
             android:textSize="10pt"
             android:layout_above="@+id/start_button"
             android:layout_marginBottom="149dp"
-            android:padding="16dp" />
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Start"
+            android:text="Start test"
             android:id="@+id/start_button"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="58dp" />
+            android:layout_marginBottom="58dp"
+            android:enabled="false" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:ems="10"
+            android:id="@+id/username"
+            android:layout_above="@+id/start_button"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:id="@+id/textView"
+            android:layout_above="@+id/username"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

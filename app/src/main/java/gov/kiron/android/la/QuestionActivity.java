@@ -17,19 +17,23 @@ import android.widget.TextView;
 
 import com.google.common.base.Optional;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import gov.kiron.android.la.data.DataFactory;
 import gov.kiron.android.la.data.Question;
 import gov.kiron.android.la.data.Test;
+import gov.kiron.android.la.data.TestFactory;
 
 public class QuestionActivity extends AppCompatActivity {
 
     private static final String TAG = QuestionActivity.class.getSimpleName();
 
-    private static final String SAVED_INDEX = "saved_index";
-    private static final String SAVED_TEST = "saved_test";
+    public static final String SAVED_INDEX = "saved_index";
+    public static final String SAVED_TEST = "saved_test";
+    public static final String SAVED_USERNAME = "saved_username";
     private int index;
     private Test test;
 
@@ -44,13 +48,15 @@ public class QuestionActivity extends AppCompatActivity {
     private Button previousButton;
     private TextView timerTextView;
 
-    private Map<Character, Integer> answerRadioButtonMap;
+    private Map<Character,Integer> answerRadioButtonMap;
+    private String username;
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         this.index = savedInstanceState.getInt(SAVED_INDEX);
         this.test = (Test) savedInstanceState.get(SAVED_TEST);
+        this.username = savedInstanceState.getString(SAVED_USERNAME);
     }
 
     @Override
@@ -94,11 +100,12 @@ public class QuestionActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             this.index = savedInstanceState.getInt(SAVED_INDEX);
             this.test = (Test) savedInstanceState.get(SAVED_TEST);
+            this.username = savedInstanceState.getString(SAVED_USERNAME);
         } else {
             this.index = 0;
-            this.test = (Test) getIntent().getExtras().get("test");
+            this.test = (Test) getIntent().getExtras().get(SAVED_TEST);
+            this.username = getIntent().getExtras().getString(SAVED_USERNAME);
         }
-
 
         loadQuestion(test.getQuestions(), this.index);
 
@@ -117,7 +124,7 @@ public class QuestionActivity extends AppCompatActivity {
         });
 
         answerGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
+           @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 Question currentQuestion = test.getQuestions().get(index);
 
@@ -131,6 +138,8 @@ public class QuestionActivity extends AppCompatActivity {
 
             }
         });
+
+        Log.d(TAG, "Username: " + username);
     }
 
     private char getCheckedItemByInt(int checkedInt) {
@@ -224,6 +233,7 @@ public class QuestionActivity extends AppCompatActivity {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putInt(SAVED_INDEX, this.index);
         savedInstanceState.putSerializable(SAVED_TEST, this.test);
+        savedInstanceState.putSerializable(SAVED_USERNAME, this.username);
         // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -244,7 +254,12 @@ public class QuestionActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_submit2) {
+        if (id == R.id.action_submit) {
+            try {
+                TestFactory.writeJSONToServer(test, username);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             Intent intent = new Intent(QuestionActivity.this, SummaryActivity.class);
 
@@ -255,4 +270,5 @@ public class QuestionActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

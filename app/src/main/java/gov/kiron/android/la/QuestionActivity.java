@@ -24,6 +24,8 @@ public class QuestionActivity extends AppCompatActivity {
 
     private static final String TAG = QuestionActivity.class.getSimpleName();
 
+    private static final String SAVED_INDEX = "saved_index";
+    private static final String SAVED_TEST = "saved_test";
     private int index;
     private Test test;
 
@@ -37,6 +39,13 @@ public class QuestionActivity extends AppCompatActivity {
     private Button nextButton;
     private Button previousButton;
     private TextView timerTextView;
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        this.index = savedInstanceState.getInt(SAVED_INDEX);
+        this.test = (Test) savedInstanceState.get(SAVED_TEST);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +77,19 @@ public class QuestionActivity extends AppCompatActivity {
 //            }
 //        }.start();
 
-        this.test = (Test) getIntent().getExtras().get("test");
 
-        loadQuestion(test.getQuestions(), 0);
+        if (savedInstanceState != null) {
+            this.index = savedInstanceState.getInt(SAVED_INDEX);
+            this.test = (Test) savedInstanceState.get(SAVED_TEST);
+        } else {
+            this.index = 0;
+            this.test = (Test) getIntent().getExtras().get("test");
+        }
+
+
+
+
+        loadQuestion(test.getQuestions(), this.index);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -189,4 +208,13 @@ public class QuestionActivity extends AppCompatActivity {
 
         }
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState)  {
+        savedInstanceState.putInt(SAVED_INDEX, this.index);
+        savedInstanceState.putSerializable(SAVED_TEST, this.test);
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
 }

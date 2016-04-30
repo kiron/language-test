@@ -88,7 +88,6 @@ public class QuestionActivity extends AppCompatActivity {
 
 
 
-
         loadQuestion(test.getQuestions(), this.index);
 
         nextButton.setOnClickListener(new View.OnClickListener() {

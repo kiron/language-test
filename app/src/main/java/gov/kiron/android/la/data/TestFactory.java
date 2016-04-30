@@ -1,13 +1,18 @@
 package gov.kiron.android.la.data;
 
+import android.os.StrictMode;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,10 +21,49 @@ import java.util.List;
  */
 public class TestFactory {
 
+    private static String readStream(InputStream is) {
+        try {
+            ByteArrayOutputStream bo = new ByteArrayOutputStream();
+            int i = is.read();
+            while(i != -1) {
+                bo.write(i);
+                i = is.read();
+            }
+            return bo.toString();
+        } catch (IOException e) {
+            return "";
+        }
+    }
+
+
+
+
+    private static String getJSONFromServer() throws IOException {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        URL url = new URL("http://athen052.server4you.de:8080/questions");
+        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        String json = "";
+        try {
+            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+            json = readStream(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            urlConnection.disconnect();
+        }
+        return json;
+    }
 
     public static Test createTest(Level level) {
 
-        String json = getJSON();
+        String json = null;
+        try {
+            json = getJSONFromServer();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         final List<Question> questions;
 

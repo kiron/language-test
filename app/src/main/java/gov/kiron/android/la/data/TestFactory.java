@@ -3,6 +3,8 @@ package gov.kiron.android.la.data;
 import android.os.StrictMode;
 import android.util.Log;
 
+import com.google.common.base.Optional;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -78,6 +80,9 @@ public class TestFactory {
                 int questionId = jsonQuestion.getInt("id");
                 String questionContent = jsonQuestion.getString("content");
 
+                String pictureURL = jsonQuestion.getString("pictureUrl");
+
+
                 JSONArray jsonAnswers = jsonQuestion.getJSONArray("answers");
 
                 List<Answer> answers = new ArrayList<>(jsonAnswers.length());
@@ -89,7 +94,7 @@ public class TestFactory {
                     answers.add(DataFactory.createAnswer(answerId, answerContent));
                 }
 
-                Content content = DataFactory.createContent(questionContent);
+                Content content = DataFactory.createContent(questionContent, Optional.fromNullable(pictureURL));
 
                 Question question = DataFactory.createQuestion(questionId, content, answers);
 

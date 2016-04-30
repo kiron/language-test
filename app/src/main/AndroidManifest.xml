@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="gov.kiron.android.la">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="gov.kiron.android.la.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -18,7 +20,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="gov.kiron.android.la.QuestionActivity"></activity>
-        <service android:name="gov.kiron.android.la.TestTimeCountDownService" />
+        <activity android:name=".QuestionActivity" />
+
+        <service android:name=".TestTimeCountDownService" />
+
+        <activity android:name=".SummaryActivity"></activity>
     </application>
+
 </manifest>

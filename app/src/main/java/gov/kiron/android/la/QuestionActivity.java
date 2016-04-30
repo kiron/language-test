@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -43,7 +44,7 @@ public class QuestionActivity extends AppCompatActivity {
     private Button previousButton;
     private TextView timerTextView;
 
-    private Map<Character,Integer> answerRadioButtonMap;
+    private Map<Character, Integer> answerRadioButtonMap;
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -97,7 +98,6 @@ public class QuestionActivity extends AppCompatActivity {
             this.index = 0;
             this.test = (Test) getIntent().getExtras().get("test");
         }
-
 
 
         loadQuestion(test.getQuestions(), this.index);
@@ -182,14 +182,14 @@ public class QuestionActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         registerReceiver(br, new IntentFilter(TestTimeCountDownService.COUNTDOWN_BR));
-        Log.i(TAG, "Registered broacast receiver");
+        Log.i(TAG, "Registered broadcast receiver");
     }
 
     @Override
     public void onPause() {
         super.onPause();
         unregisterReceiver(br);
-        Log.i(TAG, "Unregistered broacast receiver");
+        Log.i(TAG, "Unregistered broadcast receiver");
     }
 
     @Override
@@ -221,7 +221,7 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState)  {
+    public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putInt(SAVED_INDEX, this.index);
         savedInstanceState.putSerializable(SAVED_TEST, this.test);
         // Always call the superclass so it can save the view hierarchy state
@@ -236,4 +236,23 @@ public class QuestionActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_submit2) {
+
+            Intent intent = new Intent(QuestionActivity.this, SummaryActivity.class);
+
+            startActivity(intent);
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

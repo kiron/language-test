@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -24,6 +25,8 @@ public class QuestionActivity extends AppCompatActivity {
 
     private static final String TAG = QuestionActivity.class.getSimpleName();
 
+    private static final String SAVED_INDEX = "saved_index";
+    private static final String SAVED_TEST = "saved_test";
     private int index;
     private Test test;
 
@@ -37,6 +40,13 @@ public class QuestionActivity extends AppCompatActivity {
     private Button nextButton;
     private Button previousButton;
     private TextView timerTextView;
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        this.index = savedInstanceState.getInt(SAVED_INDEX);
+        this.test = (Test) savedInstanceState.get(SAVED_TEST);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +78,18 @@ public class QuestionActivity extends AppCompatActivity {
 //            }
 //        }.start();
 
-        this.test = (Test) getIntent().getExtras().get("test");
 
-        loadQuestion(test.getQuestions(), 0);
+        if (savedInstanceState != null) {
+            this.index = savedInstanceState.getInt(SAVED_INDEX);
+            this.test = (Test) savedInstanceState.get(SAVED_TEST);
+        } else {
+            this.index = 0;
+            this.test = (Test) getIntent().getExtras().get("test");
+        }
+
+
+
+        loadQuestion(test.getQuestions(), this.index);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -183,7 +202,27 @@ public class QuestionActivity extends AppCompatActivity {
         if (intent.getExtras() != null) {
             long remainingTime = intent.getLongExtra("remainingTime", 0);
             //Log.i(TAG, "Countdown seconds remaining: " +  millisUntilFinished / 1000);
-            timerTextView.setText(remainingTime / 60 + ":" + remainingTime % 60);
+            String min = String.format("%02d", remainingTime / 60);
+            String sec = String.format("%02d", remainingTime % 60);
+            timerTextView.setText(min + ":" + sec);
+
         }
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState)  {
+        savedInstanceState.putInt(SAVED_INDEX, this.index);
+        savedInstanceState.putSerializable(SAVED_TEST, this.test);
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_question, menu);
+        return true;
+    }
+
 }

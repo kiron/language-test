@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="la.hack.kiron.gov.kironlanguageassessment">
+    package="gov.kiron.android.la">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -18,6 +20,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".QuestionActivity" />
+
+        <service android:name=".TestTimeCountDownService" />
+
+        <activity android:name=".SummaryActivity"></activity>
     </application>
 
 </manifest>

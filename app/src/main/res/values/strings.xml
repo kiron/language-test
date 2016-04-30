@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Kiron Language Assessment</string>
     <string name="action_settings">Settings</string>
+    <string name="home_instructions">
+        \u2022 50 multiple-choice-questions.
+        \n\n\u2022 50 minutes to finish the test.
+        \n\n\u2022 You can skip through the questions and come back to them later.
+</string>
+    <string name="action_submit">Submit</string>
+    <string name="summary">Thank you for taking the Kiron Language Test. We will be in contact with you shortly.</string>
 </resources>

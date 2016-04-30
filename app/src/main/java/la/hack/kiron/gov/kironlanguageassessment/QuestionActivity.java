@@ -48,19 +48,19 @@ public class QuestionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
-        titleTextView = (TextView)findViewById(R.id.title);
-        questionTextView = (TextView)findViewById(R.id.question);
+        titleTextView = (TextView) findViewById(R.id.title);
+        questionTextView = (TextView) findViewById(R.id.question);
 
-        answerGroup = (RadioGroup)findViewById(R.id.answerGroup);
-        radioButton1 = (RadioButton)findViewById(R.id.radioButton1);
-        radioButton2 = (RadioButton)findViewById(R.id.radioButton2);
-        radioButton3 = (RadioButton)findViewById(R.id.radioButton3);
-        radioButton4 = (RadioButton)findViewById(R.id.radioButton4);
+        answerGroup = (RadioGroup) findViewById(R.id.answerGroup);
+        radioButton1 = (RadioButton) findViewById(R.id.radioButton1);
+        radioButton2 = (RadioButton) findViewById(R.id.radioButton2);
+        radioButton3 = (RadioButton) findViewById(R.id.radioButton3);
+        radioButton4 = (RadioButton) findViewById(R.id.radioButton4);
 
-        nextButton = (Button)findViewById(R.id.next_button);
-        previousButton = (Button)findViewById(R.id.previousButton);
+        nextButton = (Button) findViewById(R.id.next_button);
+        previousButton = (Button) findViewById(R.id.previousButton);
 
-        timerTextView = (TextView)findViewById(R.id.timer);
+        timerTextView = (TextView) findViewById(R.id.timer);
 
 //        new CountDownTimer(TEST_TIME * 60 * 1000, 1000) {
 //
@@ -73,7 +73,7 @@ public class QuestionActivity extends AppCompatActivity {
 //            }
 //        }.start();
 
-        this.test = (Test)getIntent().getExtras().get("test");
+        this.test = (Test) getIntent().getExtras().get("test");
 
         loadQuestion(test.getQuestions(), 0);
 
@@ -91,15 +91,14 @@ public class QuestionActivity extends AppCompatActivity {
             }
         });
 
-        answerGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
+        answerGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 Question currentQuestion = test.getQuestions().get(index);
 
                 int indexOfCheckedAnswer = getCheckedItemById(checkedId);
 
-                if(indexOfCheckedAnswer >=0 && indexOfCheckedAnswer <= 3) {
+                if (indexOfCheckedAnswer >= 0 && indexOfCheckedAnswer <= 3) {
                     currentQuestion.setSelectedAnswer(Optional.of(Integer.valueOf(checkedId)));
                 } else {
                     currentQuestion.setSelectedAnswer(Optional.<Integer>absent());
@@ -107,19 +106,16 @@ public class QuestionActivity extends AppCompatActivity {
 
             }
         });
-
-        startService(new Intent(this, BroadcastService.class));
-        Log.i(TAG, "Started service");
     }
 
     private int getCheckedItemById(int checkedId) {
-        if(checkedId == R.id.radioButton1) {
+        if (checkedId == R.id.radioButton1) {
             return 0;
-        } else if(checkedId == R.id.radioButton2) {
+        } else if (checkedId == R.id.radioButton2) {
             return 1;
-        } else if(checkedId == R.id.radioButton3) {
+        } else if (checkedId == R.id.radioButton3) {
             return 2;
-        } else if(checkedId == R.id.radioButton4) {
+        } else if (checkedId == R.id.radioButton4) {
             return 3;
         } else {
             return -1;
@@ -129,7 +125,7 @@ public class QuestionActivity extends AppCompatActivity {
     private void loadQuestion(List<Question> questions, int index) {
         Question question = questions.get(index);
 
-        titleTextView.setText("Question " + (index+1) + " of " + questions.size());
+        titleTextView.setText("Question " + (index + 1) + " of " + questions.size());
         questionTextView.setText(question.getContent().getContent());
 
         radioButton1.setText(question.getAnswers().get(0).getContent());
@@ -140,13 +136,13 @@ public class QuestionActivity extends AppCompatActivity {
         // Set selected answer (if there is one)
         Question currentQuestion = test.getQuestions().get(index);
 
-        if(currentQuestion.getSelectedAnswer().isPresent()) {
+        if (currentQuestion.getSelectedAnswer().isPresent()) {
             answerGroup.check(currentQuestion.getSelectedAnswer().get());
         } else {
             answerGroup.clearCheck();
         }
 
-        nextButton.setEnabled(index < questions.size()-1);
+        nextButton.setEnabled(index < questions.size() - 1);
         previousButton.setEnabled(index > 0);
     }
 
@@ -180,9 +176,10 @@ public class QuestionActivity extends AppCompatActivity {
         }
         super.onStop();
     }
+
     @Override
     public void onDestroy() {
-        stopService(new Intent(this, BroadcastService.class));
+        //stopService(new Intent(this, BroadcastService.class));
         Log.i(TAG, "Stopped service");
         super.onDestroy();
     }

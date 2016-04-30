@@ -34,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
                 intent.putExtra("test", TestFactory.createTest(Level.A1));
+
+                startService(new Intent(MainActivity.this, BroadcastService.class));
+
                 startActivity(intent);
             }
         });

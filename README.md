@@ -1,4 +1,4 @@
-## Kiron Language Assessment App
+## Kiron Language Assessment Test App
 
 Kiron's android application for conducting language assessments.
 

@@ -269,7 +269,7 @@ public class QuestionActivity extends AppCompatActivity {
             try {
                 TestFactory.writeJSONToServer(test, username);
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.e(TAG, "Error while submitting test data to server.", e);
             }
 
             Intent intent = new Intent(QuestionActivity.this, SummaryActivity.class);

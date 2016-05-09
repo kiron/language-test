@@ -18,6 +18,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import gov.kiron.android.la.BuildConfig;
+
 /**
  * Created by Christian on 29.04.2016.
  */
@@ -45,7 +47,8 @@ public class TestFactory {
     private static String getJSONFromServer() throws IOException {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        URL url = new URL("http://athen052.server4you.de:8080/questions");
+        Log.d(TAG, "Attempting to connect to \"" + BuildConfig.SERVER_URL);
+        URL url = new URL(BuildConfig.SERVER_URL + "/questions");
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         String json = "";
         try {
@@ -134,7 +137,7 @@ public class TestFactory {
             sb.append(":");
             sb.append(q.getSelectedAnswer().or('-'));
         }
-        URL url = new URL("http://athen052.server4you.de:8080/submit/" +
+        URL url = new URL(BuildConfig.SERVER_URL + "/submit/" +
                 sb.toString() +
                 "?username=" + username);
         Log.i("DEBUG", "write to JSON: " + sb.toString());

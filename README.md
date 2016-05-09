@@ -9,6 +9,8 @@ Authors: Christian Plewnia, Julian Schamper, David Swallow, Gernot Suemmermann, 
 ### Prerequisites
 
 * A running [language assessment server](https://github.com/kironuniversity/language-test-android-server)
+* Address of the server specified in the settings `app/build.gradle`: 
+  * e.g., for a server instance running locally and an emulated device use: `buildConfigField 'String', 'SERVER_URL', '"http://10.0.2.2:8080"'`
 
 ### Steps
 

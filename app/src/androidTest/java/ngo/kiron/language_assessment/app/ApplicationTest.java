@@ -1,4 +1,4 @@
-package gov.kiron.android.la;
+package ngo.kiron.language_assessment.app;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

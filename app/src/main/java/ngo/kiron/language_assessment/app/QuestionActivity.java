@@ -1,4 +1,4 @@
-package gov.kiron.android.la;
+package ngo.kiron.language_assessment.app;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -23,9 +23,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import gov.kiron.android.la.data.Question;
-import gov.kiron.android.la.data.Test;
-import gov.kiron.android.la.data.TestFactory;
+import ngo.kiron.language_assessment.app.data.Question;
+import ngo.kiron.language_assessment.app.data.Test;
+import ngo.kiron.language_assessment.app.data.TestFactory;
 
 public class QuestionActivity extends AppCompatActivity {
 

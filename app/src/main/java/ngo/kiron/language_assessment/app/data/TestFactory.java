@@ -1,4 +1,4 @@
-package gov.kiron.android.la.data;
+package ngo.kiron.language_assessment.app.data;
 
 import android.os.StrictMode;
 import android.util.Log;
@@ -18,7 +18,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import gov.kiron.android.la.BuildConfig;
+import ngo.kiron.language_assessment.app.BuildConfig;
 
 /**
  * Created by Christian on 29.04.2016.

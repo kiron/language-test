@@ -1,4 +1,4 @@
-package gov.kiron.android.la.data;
+package ngo.kiron.language_assessment.app.data;
 
 import java.io.Serializable;
 

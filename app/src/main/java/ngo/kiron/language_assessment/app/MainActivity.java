@@ -1,4 +1,4 @@
-package gov.kiron.android.la;
+package ngo.kiron.language_assessment.app;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,17 +7,15 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.ArrayList;
 
-import gov.kiron.android.la.data.Level;
-import gov.kiron.android.la.data.Question;
-import gov.kiron.android.la.data.TestFactory;
+import ngo.kiron.language_assessment.app.data.Level;
+import ngo.kiron.language_assessment.app.data.Question;
+import ngo.kiron.language_assessment.app.data.TestFactory;
 
 public class MainActivity extends AppCompatActivity {
 

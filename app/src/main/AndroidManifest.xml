@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="gov.kiron.android.la">
+    package="ngo.kiron.language_assessment.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="ngo.kiron.language_assessment.app.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,11 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".QuestionActivity" />
-
-        <service android:name=".TestTimeCountDownService" />
-
-        <activity android:name=".SummaryActivity"></activity>
+        <activity android:name="ngo.kiron.language_assessment.app.QuestionActivity" />
+        <activity android:name="ngo.kiron.language_assessment.app.SummaryActivity"></activity>
+        <service android:name="ngo.kiron.language_assessment.app.TestTimeCountDownService" />
     </application>
 
 </manifest>

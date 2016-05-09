@@ -1,7 +1,6 @@
-package gov.kiron.android.la.data;
+package ngo.kiron.language_assessment.app.data;
 
 import android.graphics.Bitmap;
-import android.media.Image;
 
 import java.io.Serializable;
 
